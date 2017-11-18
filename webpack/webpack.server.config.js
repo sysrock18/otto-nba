@@ -9,12 +9,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        use: {
-          loader: 'json'
-        }
-      },
-      {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: {
