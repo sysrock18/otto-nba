@@ -1,9 +1,10 @@
 import http from 'http';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 
 import Routes from './routes';
+import Layout from '../source/components/layout';
 
 function requestHandler(request, response) {
   const context = {};
@@ -23,7 +24,12 @@ function requestHandler(request, response) {
     response.end();
   }
 
-  response.write(html);
+  response.write(renderToStaticMarkup(
+    <Layout
+      title="Otto NBA"
+      content={html}
+    />)
+  );
   response.end();
 }
 
