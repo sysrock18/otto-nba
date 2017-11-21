@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-router-dom": "^4.2.2"
@@ -24,7 +25,6 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-latest-minimal": "^1.1.2",
     "babel-preset-react": "^6.24.1",
-    "json-loader": "^0.5.7",
     "webpack": "^3.8.1"
   }
 }
