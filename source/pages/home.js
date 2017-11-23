@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
 
 import api from '../api';
 import Scoreboard from '../components/scoreboard';
@@ -15,10 +16,11 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    const currentSeason = await api.season.getCurrent(new Date());
-    const seasonName = currentSeason.currentseason.season[0].details.slug;
-    const scoreboards = await api.scoreboards.getList(new Date(), seasonName);
-    const gameScore = scoreboards.scoreboard.gameScore;
+
+    const currentSeasonResponse = await api.season.getCurrent(new Date());
+    const seasonName = currentSeasonResponse.currentseason.season[0].details.slug;
+    const scoreboardsResponse = await api.scoreboards.getList(new Date(), seasonName);
+    const gameScore = scoreboardsResponse.scoreboard.gameScore;
 
     this.setState({
       gameScore,
@@ -29,12 +31,13 @@ class Home extends Component {
   render() {
     return (
       <section name="Home">
-        <h1>Scoreboards</h1>
         <h3>There are {this.state.gameScore.length} games</h3>
 
         <Link to="/teams">
           Go to teams
         </Link>
+
+        <FlatButton label="Hello Material UI" />
 
         <section>
           {this.state.loading && (

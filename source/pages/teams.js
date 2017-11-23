@@ -5,7 +5,6 @@ class Teams extends Component {
   render() {
     return (
       <section name="Teams">
-        <h1>Teams</h1>
         <Link to="/">
           Go back to home
         </Link>

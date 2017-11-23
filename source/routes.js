@@ -4,10 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './pages/home';
 import Teams from './pages/teams';
 import Error404 from './pages/error404';
+import Header from './shared/header';
 
 function Routes() {
   return (
     <main role="application">
+      <Header />
+      
       <Switch>
         {/* NBA Scoreboards list */}
         <Route
