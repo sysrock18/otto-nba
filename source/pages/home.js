@@ -1,29 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-import FlatButton from 'material-ui/FlatButton';
+import CircularProgress from 'material-ui/CircularProgress';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 import api from '../api';
 import Scoreboard from '../components/scoreboard';
+import Teams from './teams';
+import styles from './home.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      gameScore: [],
+      gameScores: [],
       loading: true
     };
   }
 
   async componentDidMount() {
-
-    const currentSeasonResponse = await api.season.getCurrent(new Date());
-    const seasonName = currentSeasonResponse.currentseason.season[0].details.slug;
-    const scoreboardsResponse = await api.scoreboards.getList(new Date(), seasonName);
-    const gameScore = scoreboardsResponse.scoreboard.gameScore;
+    let todayDate = new Date();
+    let yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
+    const currentSeason = await api.season.getCurrent(yesterdayDate);
+    const seasonName = currentSeason.slug;
+    const gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
 
     this.setState({
-      gameScore,
+      gameScores,
       loading: false
     });
   }
@@ -31,21 +34,23 @@ class Home extends Component {
   render() {
     return (
       <section name="Home">
-        <h3>There are {this.state.gameScore.length} games</h3>
-
-        <Link to="/teams">
-          Go to teams
-        </Link>
-
-        <FlatButton label="Hello Material UI" />
-
-        <section>
-          {this.state.loading && (
-            <h2>Loading Scoreboards...</h2>
-          )}
-          {this.state.gameScore
-            .map(score => <Scoreboard key={score.game.ID} {...score} />)}
-        </section>
+        <Tabs>
+          <Tab label="Scoreboards" >
+            <section>
+              {this.state.loading && (
+                <div className={styles.textCenter}>
+                  <CircularProgress />
+                </div>
+              )}
+              <h4 className={styles.textCenter}>Here you can see the NBA scoreboards of the {this.state.gameScores.length} games of yesterday</h4>
+              {this.state.gameScores
+                .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
+            </section>
+          </Tab>
+          <Tab label="Standings" >
+            <Teams />
+          </Tab>
+        </Tabs>
       </section>
     );
   }

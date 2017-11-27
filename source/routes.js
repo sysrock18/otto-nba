@@ -12,19 +12,12 @@ function Routes() {
       <Header />
       
       <Switch>
-        {/* NBA Scoreboards list */}
+        {/* NBA Page home */}
         <Route
           path="/"
           exact
           title="Home"
           component={Home}
-        />
-        {/* NBA Teams list */}
-        <Route
-          path="/teams"
-          exact
-          title="Teams"
-          component={Teams}
         />
         {/* Error 404 */}
         <Route component={Error404} />

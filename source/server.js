@@ -4,7 +4,7 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { green100, green500, green700 } from 'material-ui/styles/colors';
+import { blue900, redA700 } from 'material-ui/styles/colors';
 
 import Routes from './routes';
 import Layout from '../source/components/layout';
@@ -14,9 +14,8 @@ function requestHandler(request, response) {
 
   const muiTheme = getMuiTheme({
     palette: {
-      primary1Color: green500,
-      primary2Color: green700,
-      primary3Color: green100,
+      primary1Color: blue900,
+      accent1Color: redA700
     },
   }, {
     avatar: {

@@ -1,4 +1,5 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   entry: './source/server.js',
@@ -17,10 +18,21 @@ const config = {
             presets: ['latest-minimal', 'react']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,  
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules',
+        }),
       }
     ]
   },
-  target: 'node'
+  target: 'node',
+  plugins: [
+    new ExtractTextPlugin('../statics/styles.css')
+  ]
 };
 
 module.exports = config;

@@ -5,8 +5,7 @@ import AppBar from 'material-ui/AppBar';
 function Header() {
   return (
     <AppBar
-      title="OTTO-NBA"
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
+      title="OTTO NBA"
     />
   );
 }

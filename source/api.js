@@ -1,7 +1,11 @@
 import fetch from 'isomorphic-fetch';
 import utils from './utils';
 
-const baseUrl = 'https://api.mysportsfeeds.com/v1.1/pull/nba/';
+import current_season from './mock/current_season.json';
+import scoreboard from './mock/scoreboard.json';
+import conference_team_standings from './mock/conference_team_standings.json';
+
+const baseUrl = 'https://api.mysportsfeeds.com/v1.1/pull/nba';
 
 const api = {
   season: {
@@ -11,9 +15,10 @@ const api = {
         headers: {
           'Authorization': 'Basic '+btoa('sysrock18:19027920')
         },
-      });
-      const data = await response.json();
-      return data;
+      })
+      .then(response => response.json())
+      .then(data => data.currentseason.season[0].details);
+      return response;
     }
   },
   scoreboards: {
@@ -23,9 +28,10 @@ const api = {
         headers: {
           'Authorization': 'Basic '+btoa('sysrock18:19027920')
         },
-      });
-      const data = await response.json();
-      return data;
+      })
+      .then(response => response.json())
+      .then(data => data.scoreboard.gameScore);
+      return response;
     }
   },
   conferenceStandings: {
@@ -34,9 +40,10 @@ const api = {
         headers: {
           'Authorization': 'Basic '+btoa('sysrock18:19027920')
         },
-      });
-      const data = await response.json();
-      return data;
+      })
+      .then(response => response.json())
+      .then(data => data.conferenceteamstandings.conference);
+      return response;
     }
   }
 };
