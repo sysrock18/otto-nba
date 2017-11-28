@@ -38,11 +38,11 @@ class Home extends Component {
           <Tab label="Scoreboards" >
             <section>
               {this.state.loading && (
-                <div className={styles.textCenter}>
+                <div className={styles.loader}>
                   <CircularProgress />
                 </div>
               )}
-              <h4 className={styles.textCenter}>Here you can see the NBA scoreboards of the {this.state.gameScores.length} games of yesterday</h4>
+
               {this.state.gameScores
                 .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
             </section>

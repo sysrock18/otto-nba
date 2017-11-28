@@ -10,16 +10,35 @@ class Scoreboard extends Component {
   render() {
     return (
       <div className={styles.cardGameScore}>
-        <Card id={`game-${this.props.game.ID}`}>
+        <Card id={`game-${this.props.game.ID}`} style={{
+          textAlign: 'center',
+          minWidth: '500px'
+        }}>
           <CardText>
-            <h4>{this.props.game.location}</h4>
-            <div>
-              <img src={`http://localhost:3001/images/${this.props.game.awayTeam.Abbreviation.toLowerCase()}.png`} />
-              {this.props.awayScore}
+            <div className={styles.containerTeam}>
+              <div><img src={`http://localhost:3001/images/${this.props.game.awayTeam.Abbreviation.toLowerCase()}.png`} /></div>
+              <div className={styles.awayTeam}>
+                <div className={styles.city}>{this.props.game.awayTeam.City}</div>
+                <div className={styles.teamName}>{this.props.game.awayTeam.Name}</div>
+              </div>
             </div>
-            <div>
+            <div className={styles.containerResult}>
+              <div>Location</div>
+              <div className={styles.location}>{this.props.game.location}</div>
+              <div className={styles.containerScore}>
+                <div className={styles.awayScore}>{this.props.awayScore}</div>
+                <div className={styles.homeScore}>{this.props.homeScore}</div>
+              </div>
+              <div className={styles.clear}></div>
+              <div>{this.props.game.date}</div>
+              <div>{this.props.game.time}</div>
+            </div>
+            <div className={styles.containerTeam}>
               <img src={`http://localhost:3001/images/${this.props.game.homeTeam.Abbreviation.toLowerCase()}.png`} />
-              {this.props.homeScore}
+              <div className={styles.homeTeam}>
+                <div className={styles.city}>{this.props.game.homeTeam.City}</div>
+                <div className={styles.teamName}>{this.props.game.homeTeam.Name}</div>
+              </div>
             </div>
           </CardText>
         </Card>

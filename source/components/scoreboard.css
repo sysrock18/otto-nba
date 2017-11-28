@@ -1,3 +1,64 @@
 .cardGameScore {
   margin: 10px;
 }
+
+.containerTeam {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+}
+
+.containerResult {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.awayScore {
+  font-size: 2.5em;
+  font-weight: bold;
+  float: left;
+}
+
+.homeScore {
+  font-size: 2.5em;
+  font-weight: bold;
+  float: right;
+}
+
+.containerScore {
+  margin-top: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.city {
+  font-size: 1.2em;
+}
+
+.awayTeam {
+  text-align: right;
+  position: absolute;
+  left: -68px;
+  top: 17px;
+}
+
+.homeTeam {
+  text-align: left;
+  position: absolute;
+  left: 98px;
+  top: 17px;
+}
+
+.teamName {
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.location {
+  font-size: 1.1em;
+  font-weight: 900;
+}
