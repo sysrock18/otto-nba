@@ -14,6 +14,7 @@ class Home extends Component {
 
     this.state = {
       gameScores: [],
+      standings: [],
       loading: true
     };
   }
@@ -24,9 +25,11 @@ class Home extends Component {
     const currentSeason = await api.season.getCurrent(yesterdayDate);
     const seasonName = currentSeason.slug;
     const gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
+    const standings = await api.conferenceStandings.getList(seasonName);
 
     this.setState({
       gameScores,
+      standings,
       loading: false
     });
   }
@@ -48,7 +51,13 @@ class Home extends Component {
             </section>
           </Tab>
           <Tab label="Standings" >
-            <Teams />
+            {this.state.loading && (
+              <div className={styles.loader}>
+                <CircularProgress />
+              </div>
+            )}
+            
+            <Teams standings={this.state.standings} />
           </Tab>
         </Tabs>
       </section>
