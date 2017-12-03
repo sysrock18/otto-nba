@@ -21,3 +21,34 @@
   margin: 0px 4px;
   font-size: 1.5em;
 }
+
+.references {
+  margin-bottom: 10px;
+}
+
+.references .iconRef {
+  width: 23px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.references .iconRef i {
+  font-size: 1.5em;
+}
+
+.nameRef {
+  display: inline-block;
+  width: 170px;
+  white-space: pre-wrap;
+  margin-left: 4px;
+  line-height: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: #0d47a1;
+}
+
+a:visited {
+  color: #0d47a1;
+}

@@ -52,21 +52,24 @@ class Header extends Component {
             </div>
 
             <h4>Many thanks to:</h4>
-            <div>
               <a href="https://platzi.com/" target="_blank">
-                <i className="icon icon ion-android-happy"></i> Platzi
+                <div className={styles.references}>
+                  <div className={styles.iconRef}><i className="icon icon ion-android-happy"></i></div>
+                  <div className={styles.nameRef}>Platzi</div>
+                </div>
               </a>
-            </div>
-            <div>
               <a href="https://www.mysportsfeeds.com/data-feeds/" target="_blank">
-                <i className="icon icon ion-ios-gear"></i> My Sports Feed API
+                <div className={styles.references}>  
+                  <div className={styles.iconRef}><i className="icon icon ion-ios-gear"></i></div>
+                  <div className={styles.nameRef}>My Sports Feed API</div>
+                </div>
               </a>
-            </div>
-            <div>
               <a href="https://www.sporcle.com/user/lfrench30/" target="_blank">
-                <i className="icon icon ion-ios-eye"></i> Logo teams by lfrench30 at sporcle
+                <div className={styles.references}>  
+                  <div className={styles.iconRef}><i className="icon icon ion-ios-eye"></i></div>
+                  <div className={styles.nameRef}>Logo teams by lfrench30 at sporcle</div>
+                </div>
               </a>
-            </div>
           </div>
         </Drawer>
       </div>
