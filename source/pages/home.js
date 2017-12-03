@@ -23,9 +23,13 @@ class Home extends Component {
     let todayDate = new Date();
     let yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
     const currentSeason = await api.season.getCurrent(yesterdayDate);
-    const seasonName = currentSeason.slug;
-    const gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
-    const standings = await api.conferenceStandings.getList(seasonName);
+    let gameScores = [];
+    let standings = [];
+    if (currentSeason) {
+      const seasonName = currentSeason.slug;
+      gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
+      standings = await api.conferenceStandings.getList(seasonName);
+    }
 
     this.setState({
       gameScores,
@@ -46,8 +50,12 @@ class Home extends Component {
                 </div>
               )}
 
-              {this.state.gameScores
-                .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
+              {this.state.gameScores.length > 0 &&
+                this.state.gameScores
+                  .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
+
+              {!this.state.gameScores.length && !this.state.loading &&
+                (<h2 className={styles.error}>We can't load the teams :(</h2>)}
             </section>
           </Tab>
           <Tab label="Standings" >
@@ -57,7 +65,11 @@ class Home extends Component {
               </div>
             )}
             
-            <Teams standings={this.state.standings} />
+            {this.state.standings.length > 0 &&
+              (<Teams standings={this.state.standings} />)}
+
+            {!this.state.standings.length && !this.state.loading &&
+              (<h2 className={styles.error}>We can't load the standings :(</h2>)}
           </Tab>
         </Tabs>
       </section>

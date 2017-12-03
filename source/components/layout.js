@@ -11,6 +11,7 @@ function Layout(props) {
         <link rel="stylesheet" href={`http://localhost:3001/styles.css`} />
         <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" crossOrigin="anonymous" />
       </head>
       <body>
         <div

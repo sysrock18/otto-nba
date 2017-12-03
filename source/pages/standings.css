@@ -1,0 +1,28 @@
+.conferenceStandings {
+  display: inline-block;
+  width: 340px;
+  margin: 10px 15px;
+}
+
+.conferenceName {
+  height: 95px;
+}
+
+.conferenceName span {
+  vertical-align: middle;
+  height: 100%;
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.tableStandings {
+  width: 345px;
+  border-collapse: collapse;
+  padding: 15px;
+}
+
+.tableStandings tr th, .tableStandings tr td {
+  padding: 7px;
+  border-bottom: 1px solid rgb(173, 168, 168);
+}

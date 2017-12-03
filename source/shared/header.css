@@ -1,0 +1,23 @@
+.container {
+  padding: 15px;
+}
+
+.iconSimonStyle {
+  font-size: 4.5em;
+  color: #FA8320;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.myNetwork {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.myNetwork div {
+  display: inline-block;
+  margin: 0px 4px;
+  font-size: 1.5em;
+}

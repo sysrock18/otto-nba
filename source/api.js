@@ -17,7 +17,8 @@ const api = {
         },
       })
       .then(response => response.json())
-      .then(data => data.currentseason.season[0].details);
+      .then(data => data.currentseason.season[0].details)
+      .catch(err => false);
       return response;
     }
   },
@@ -30,7 +31,8 @@ const api = {
         },
       })
       .then(response => response.json())
-      .then(data => data.scoreboard.gameScore);
+      .then(data => data.scoreboard.gameScore)
+      .catch(err => false);
       return response;
     }
   },
@@ -42,7 +44,8 @@ const api = {
         },
       })
       .then(response => response.json())
-      .then(data => data.conferenceteamstandings.conference);
+      .then(data => data.conferenceteamstandings.conference)
+      .catch(err => false);
       return response;
     }
   }
