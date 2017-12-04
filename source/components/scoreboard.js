@@ -16,7 +16,7 @@ class Scoreboard extends Component {
         }}>
           <CardText>
             <div className={styles.containerTeam}>
-              <div><img src={`http://localhost:3001/images/${this.props.game.awayTeam.Abbreviation.toLowerCase()}.png`} /></div>
+              <div><img src={`https://otto-nba-sfs.now.sh/images/${this.props.game.awayTeam.Abbreviation.toLowerCase()}.png`} /></div>
               <div className={styles.awayTeam}>
                 <div className={styles.city}>{this.props.game.awayTeam.City}</div>
                 <div className={styles.teamName}>{this.props.game.awayTeam.Name}</div>
@@ -34,7 +34,7 @@ class Scoreboard extends Component {
               <div>{this.props.game.time}</div>
             </div>
             <div className={styles.containerTeam}>
-              <img src={`http://localhost:3001/images/${this.props.game.homeTeam.Abbreviation.toLowerCase()}.png`} />
+              <img src={`https://otto-nba-sfs.now.sh/images/${this.props.game.homeTeam.Abbreviation.toLowerCase()}.png`} />
               <div className={styles.homeTeam}>
                 <div className={styles.city}>{this.props.game.homeTeam.City}</div>
                 <div className={styles.teamName}>{this.props.game.homeTeam.Name}</div>

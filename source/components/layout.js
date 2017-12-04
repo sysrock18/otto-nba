@@ -8,10 +8,10 @@ function Layout(props) {
         <meta charSet="utf-8" />
         <title>{props.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-        <link rel="stylesheet" href={`http://localhost:3001/styles.css`} />
+        <link rel="stylesheet" href={`${props.domain}styles.css`} />
         <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
-        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" crossOrigin="anonymous" />
       </head>
       <body>
         <div
@@ -20,7 +20,7 @@ function Layout(props) {
             __html: props.content,
           }}
         />
-        <script src={`http://localhost:3001/app.js`} />
+        <script src={`${props.domain}app.js`} />
       </body>
     </html>
   );

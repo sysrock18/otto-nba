@@ -8,7 +8,7 @@ class Teams extends Component {
     return (
       <section name="Teams">
         {this.props.standings[0] && this.props.standings[1] ?
-          (<div className={styles.container}>
+          (<div style={container}>
             <Standings conference={this.props.standings[0]} />
 
             <Standings conference={this.props.standings[1]} />
@@ -17,6 +17,10 @@ class Teams extends Component {
       </section>
     );
   }
+}
+
+const container = {
+  textAlign: 'center'
 }
 
 export default Teams;

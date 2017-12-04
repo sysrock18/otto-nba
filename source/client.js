@@ -16,7 +16,7 @@ const muiTheme = getMuiTheme({
   avatar: {
     borderColor: null,
   },
-  userAgent: navigator.userAgent, 
+  userAgent: navigator.userAgent || 'all', 
 });
 
 render(

@@ -6,7 +6,16 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import api from '../api';
 import Scoreboard from '../components/scoreboard';
 import Teams from './teams';
-import styles from './home.css';
+
+const loaderStyle = {
+  textAlign: 'center',
+  padding: '10px'
+}
+  
+const errorStyle =  {
+  marginTop: '40px',
+  textAlign: 'center'
+}
 
 class Home extends Component {
   constructor(props) {
@@ -20,11 +29,11 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    let todayDate = new Date();
-    let yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
+    var todayDate = new Date();
+    var yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
     const currentSeason = await api.season.getCurrent(yesterdayDate);
-    let gameScores = [];
-    let standings = [];
+    var gameScores = [];
+    var standings = [];
     if (currentSeason) {
       const seasonName = currentSeason.slug;
       gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
@@ -45,7 +54,7 @@ class Home extends Component {
           <Tab label="Scoreboards" >
             <section>
               {this.state.loading && (
-                <div className={styles.loader}>
+                <div style={loaderStyle}>
                   <CircularProgress />
                 </div>
               )}
@@ -55,12 +64,12 @@ class Home extends Component {
                   .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
 
               {!this.state.gameScores.length && !this.state.loading &&
-                (<h2 className={styles.error}>We can't load the teams :(</h2>)}
+                (<h2 style={errorStyle}>We can't load the teams :(</h2>)}
             </section>
           </Tab>
           <Tab label="Standings" >
             {this.state.loading && (
-              <div className={styles.loader}>
+              <div style={loaderStyle}>
                 <CircularProgress />
               </div>
             )}
@@ -69,7 +78,7 @@ class Home extends Component {
               (<Teams standings={this.state.standings} />)}
 
             {!this.state.standings.length && !this.state.loading &&
-              (<h2 className={styles.error}>We can't load the standings :(</h2>)}
+              (<h2 style={errorStyle}>We can't load the standings :(</h2>)}
           </Tab>
         </Tabs>
       </section>

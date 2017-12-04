@@ -9,6 +9,10 @@ import { blue900, redA700 } from 'material-ui/styles/colors';
 import Routes from './routes';
 import Layout from '../source/components/layout';
 
+const domain = process.env.NODE_ENV === 'production'
+  ? 'https://otto-nba-sfs.now.sh/'
+  : 'http://localhost:3001/';
+
 function requestHandler(request, response) {
   const context = {};
 
@@ -45,6 +49,7 @@ function requestHandler(request, response) {
     <Layout
       title="Otto NBA"
       content={html}
+      domain={domain}
     />)
   );
   response.end();

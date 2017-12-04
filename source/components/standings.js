@@ -7,7 +7,7 @@ class Standings extends Component {
     return (
       <div className={styles.conferenceStandings}>
         <div className={styles.conferenceName}>
-          <img src={`http://localhost:3001/images/${this.props.conference['@name'].toLowerCase()}.png`} />
+          <img src={`https://otto-nba-sfs.now.sh/images/${this.props.conference['@name'].toLowerCase()}.png`} />
           <span>{this.props.conference['@name']}</span>
         </div>
         <table className={styles.tableStandings}>
@@ -26,7 +26,7 @@ class Standings extends Component {
             <tr key={item.team.ID}>
               <td><b>{item.rank}</b></td>
               <td>
-                <Avatar src={`http://localhost:3001/images/${item.team.Abbreviation.toLowerCase()}.png`} />
+                <Avatar src={`https://otto-nba-sfs.now.sh/images/${item.team.Abbreviation.toLowerCase()}.png`} />
               </td>
               <td>{`${item.team.City} ${item.team.Name}`}</td>
               <td>{item.stats.GamesPlayed['#text']}</td>
