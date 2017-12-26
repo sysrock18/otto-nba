@@ -29,15 +29,17 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    var todayDate = new Date();
-    var yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
+    const todayDate = new Date();
+    const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
     const currentSeason = await api.season.getCurrent(yesterdayDate);
-    var gameScores = [];
-    var standings = [];
+    let gameScores = [];
+    let standings = [];
     if (currentSeason) {
       const seasonName = currentSeason.slug;
-      gameScores = await api.scoreboards.getList(yesterdayDate, seasonName);
-      standings = await api.conferenceStandings.getList(seasonName);
+      const gameScoresResp = await api.scoreboards.getList(yesterdayDate, seasonName);
+      const standingsResp = await api.conferenceStandings.getList(seasonName);
+      gameScores = gameScoresResp ? gameScoresResp : [];
+      standings = standingsResp ? standingsResp : [];
     }
 
     this.setState({
