@@ -1,3 +1,5 @@
+####[*Upgrade in progress*]
+
 Otto NBA
 =========
 
@@ -5,7 +7,7 @@ Web app developed with ReactJS that shows scoreboards of the NBA games of yester
 
 ### Preview
 
-Live on https://otto-nba.now.sh/
+[*Not available for now*]
 
 ![Main](screenshots/MainOttoNBA.png?raw=true "Main")
 
@@ -36,5 +38,5 @@ Live on https://otto-nba.now.sh/
  - Real Data of the current NBA Season
 
 #### Developer
-Simon González @rockersgz
+Simon González
 e-mail: gonzalezsimon18@gmail.com
