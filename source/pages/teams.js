@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Avatar from 'material-ui/Avatar';
 import Standings from '../components/standings';
 import styles from './teams.css';
 

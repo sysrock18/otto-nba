@@ -13,6 +13,7 @@
     "@babel/preset-env": "^7.16.11",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.3",
     "file-loader": "^6.2.0",
     "isomorphic-fetch": "^2.2.1",

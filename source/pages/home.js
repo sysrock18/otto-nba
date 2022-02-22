@@ -1,11 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
-import CircularProgress from 'material-ui/CircularProgress';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import React, { Component, PropTypes, useEffect, useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 import api from '../api';
 import Scoreboard from '../components/scoreboard';
 import Teams from './teams';
+import TabPanel from '../components/TabPanel';
+import { AppBar } from '@mui/material';
 
 const loaderStyle = {
   textAlign: 'center',
@@ -17,23 +20,33 @@ const errorStyle =  {
   textAlign: 'center'
 }
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
 
-    this.state = {
-      gameScores: [],
-      standings: [],
-      loading: true
-    };
-  }
+function Home() {
+  const theme = useTheme();
+  const [value, setValue] = useState(0);
+  const [data, setData] = useState({
+    gameScores: [],
+    standings: [],
+    loading: true
+  });
 
-  async componentDidMount() {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
     const todayDate = new Date();
     const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
     const currentSeason = await api.season.getCurrent(yesterdayDate);
     let gameScores = [];
     let standings = [];
+
     if (currentSeason) {
       const seasonName = currentSeason.slug;
       const gameScoresResp = await api.scoreboards.getList(yesterdayDate, seasonName);
@@ -42,55 +55,60 @@ class Home extends Component {
       standings = standingsResp ? standingsResp : [];
     }
 
-    this.setState({
+    setData({
       gameScores,
       standings,
       loading: false
     });
   }
 
-  render() {
-    return (
-      <section name="Home">
-        {/* <Tabs> */}
-        <div>
-          <div label="Scoreboards" >
-            <section>
-              {this.state.loading && (
-                <div style={loaderStyle}>
-                  {/* <CircularProgress /> */}
-                </div>
-              )}
+  const handleChange = (_e, newValue) => {
+    setValue(newValue);
+  };
 
-              {this.state.gameScores.length > 0 &&
-                this.state.gameScores
-                  .map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
+  return (
+    <section name="Home">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="secondary"
+        textColor="inherit"
+        variant="fullWidth"
+        aria-label="full width tabs example"
+      >
+        <Tab label="Scoreboards" {...a11yProps(0)} />
+        <Tab label="Standings" {...a11yProps(1)} />
+      </Tabs>
+      <TabPanel value={value} index={0} dir={theme.direction}>
+        <section>
+          {data.loading && (
+            <div style={loaderStyle}>
+              <CircularProgress />
+            </div>
+          )}
 
-              {!this.state.gameScores.length && !this.state.loading &&
-                (<h2 style={errorStyle}>We can't load the teams :(</h2>)}
-            </section>
-          {/* </Tab> */}
+          {data.gameScores.length > 0 &&
+            data.gameScores.map(gameScore => <Scoreboard key={gameScore.game.ID} {...gameScore} />)}
+
+          {!data.gameScores.length && !data.loading &&
+            (<h2 style={errorStyle}>We can't load the teams</h2>)}
+        </section>
+      </TabPanel>
+      <TabPanel value={value} index={1} dir={theme.direction}>
+        {data.loading && (
+          <div style={loaderStyle}>
+            <CircularProgress />
           </div>
-          {/* <Tab label="Standings" > */}
-          <div label="Standings" >
-            {this.state.loading && (
-              <div style={loaderStyle}>
-                {/* <CircularProgress /> */}
-              </div>
-            )}
-            
-            {this.state.standings.length > 0 &&
-              (<Teams standings={this.state.standings} />)}
+        )}
+        
+        {data.standings.length > 0 &&
+          (<Teams standings={data.standings} />)}
 
-            {!this.state.standings.length && !this.state.loading &&
-              (<h2 style={errorStyle}>We can't load the standings :(</h2>)}
-          {/* </Tab> */}
-          </div>
-        {/* </Tabs> */}
-        </div>
-      </section>
-    );
-  }
+        {!data.standings.length && !data.loading &&
+          (<h2 style={errorStyle}>We can't load the standings</h2>)}
+      </TabPanel>
+    </section>
+  );
 }
 
 export default Home;

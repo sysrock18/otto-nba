@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@mui/material/Avatar';
 import styles from './standings.css';
 
 class Standings extends Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardText } from 'material-ui/Card';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import styles from './scoreboard.css';
 
 class Scoreboard extends Component {
@@ -14,7 +15,7 @@ class Scoreboard extends Component {
           textAlign: 'center',
           minWidth: '500px'
         }}>
-          <CardText>
+          <CardContent>
             <div className={styles.containerTeam}>
               <div><img src={`https://otto-nba-sfs.now.sh/images/${this.props.game.awayTeam.Abbreviation.toLowerCase()}.png`} /></div>
               <div className={styles.awayTeam}>
@@ -40,7 +41,7 @@ class Scoreboard extends Component {
                 <div className={styles.teamName}>{this.props.game.homeTeam.Name}</div>
               </div>
             </div>
-          </CardText>
+          </CardContent>
         </Card>
       </div>
     )
