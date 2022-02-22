@@ -52,12 +52,13 @@ class Home extends Component {
   render() {
     return (
       <section name="Home">
-        <Tabs>
-          <Tab label="Scoreboards" >
+        {/* <Tabs> */}
+        <div>
+          <div label="Scoreboards" >
             <section>
               {this.state.loading && (
                 <div style={loaderStyle}>
-                  <CircularProgress />
+                  {/* <CircularProgress /> */}
                 </div>
               )}
 
@@ -68,11 +69,13 @@ class Home extends Component {
               {!this.state.gameScores.length && !this.state.loading &&
                 (<h2 style={errorStyle}>We can't load the teams :(</h2>)}
             </section>
-          </Tab>
-          <Tab label="Standings" >
+          {/* </Tab> */}
+          </div>
+          {/* <Tab label="Standings" > */}
+          <div label="Standings" >
             {this.state.loading && (
               <div style={loaderStyle}>
-                <CircularProgress />
+                {/* <CircularProgress /> */}
               </div>
             )}
             
@@ -81,8 +84,10 @@ class Home extends Component {
 
             {!this.state.standings.length && !this.state.loading &&
               (<h2 style={errorStyle}>We can't load the standings :(</h2>)}
-          </Tab>
-        </Tabs>
+          {/* </Tab> */}
+          </div>
+        {/* </Tabs> */}
+        </div>
       </section>
     );
   }

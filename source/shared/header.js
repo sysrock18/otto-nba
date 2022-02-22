@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import styles from './header.css';
+// import AppBar from 'material-ui/AppBar';
+// import Drawer from 'material-ui/Drawer';
+// import MenuItem from 'material-ui/MenuItem';
+// import RaisedButton from 'material-ui/RaisedButton';
+// import styles from './header.css';
 
 class Header extends Component {
   constructor(props) {
@@ -20,13 +19,18 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <AppBar
+        {/* <AppBar
           title="Otto NBA"
           onLeftIconButtonTouchTap={this.handleToggle}
-        />
-        <Drawer open={this.state.open}>
+        /> */}
+        <div>
+          Otto NBA
+        </div>
+        {/* <Drawer open={this.state.open}> */}
+        <div>
           <div style={container}>
-            <RaisedButton label="Close" onClick={this.handleToggle} />
+            {/* <RaisedButton label="Close" onClick={this.handleToggle} /> */}
+            <button>Close</button>
             <h3 style={textCenter}>Information</h3>
             <div style={textCenter}>
               <div style={iconSimonStyle}><i className="icon icon ion-ios-basketball"></i></div>
@@ -71,7 +75,8 @@ class Header extends Component {
                 </div>
               </a>
           </div>
-        </Drawer>
+        {/* </Drawer> */}
+        </div>
       </div>
     );
   }

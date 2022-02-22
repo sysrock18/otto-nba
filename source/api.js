@@ -1,10 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import utils from './utils';
 
-import current_season from './mock/current_season.json';
-import scoreboard from './mock/scoreboard.json';
-import conference_team_standings from './mock/conference_team_standings.json';
-
 const baseUrl = 'https://api.mysportsfeeds.com/v1.1/pull/nba';
 
 const api = {
