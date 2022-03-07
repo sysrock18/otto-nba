@@ -20,9 +20,9 @@ const errorStyle =  {
 function reducer(state, action) {
   switch (action.type) {
     case "SET_STANDINGS":
-      return {...state, gameScores: action.payload}
+      return {...state, standings: action.payload}
     case "SET_GAMESCORES":
-      return {...state, count: action.payload}
+      return {...state, gameScores: action.payload}
     case "TOGGLE_LOADER":
       return {...state, loading: !state.loading}
   
@@ -57,17 +57,17 @@ function Home({ tab }) {
   const getData = async () => {
     const todayDate = new Date()
     const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1))
-    const currentSeason = await api.season.getCurrent(yesterdayDate)
+    // const currentSeason = await api.season.getCurrent(yesterdayDate)
     let gameScores = []
     let standings = []
 
-    if (currentSeason) {
-      const seasonName = currentSeason.slug
-      const gameScoresResp = await api.scoreboards.getList(yesterdayDate, seasonName)
-      const standingsResp = await api.conferenceStandings.getList(seasonName)
-      gameScores = gameScoresResp ? gameScoresResp : []
-      standings = standingsResp ? standingsResp : []
-    }
+    // if (currentSeason) {
+    // const seasonName = currentSeason.slug
+    const gameScoresResp = await api.scoreboards.getList(yesterdayDate)
+    // const standingsResp = await api.conferenceStandings.getList(seasonName)
+    gameScores = gameScoresResp ?? []
+    // standings = standingsResp ? standingsResp : []
+    // }
       
     return {
       gameScores,
@@ -88,7 +88,7 @@ function Home({ tab }) {
       return renderLoader()
     } else if (gameScores.length > 0) {
       return gameScores.map(gameScore => 
-        <Scoreboard key={gameScore.game.ID} {...gameScore} />
+        <Scoreboard key={gameScore.gameId} gameScore={gameScore} />
       )
     } else {
       return (

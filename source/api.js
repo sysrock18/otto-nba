@@ -1,34 +1,16 @@
 import fetch from 'isomorphic-fetch';
 import utils from './utils';
 
-const baseUrl = 'https://api.mysportsfeeds.com/v1.1/pull/nba';
+const baseUrl = 'https://data.nba.net/data/10s/prod/v1/';
 
 const api = {
-  season: {
-    async getCurrent(date = new Date()) {
-      date = utils.getFormatDate(date);
-      const response = await fetch(`${baseUrl}/current_season.json?fordate=${date}`, {
-        headers: {
-          'Authorization': 'Basic '+btoa('sysrock18:19027920')
-        },
-      })
-      .then(response => response.json())
-      .then(data => data.currentseason.season[0].details)
-      .catch(err => false);
-      return response;
-    }
-  },
   scoreboards: {
-    async getList(date = new Date(), seasonName) {
+    async getList(date = new Date()) {
       date = utils.getFormatDate(date);
-      const response = await fetch(`${baseUrl}/${seasonName}/scoreboard.json?fordate=${date}`, {
-        headers: {
-          'Authorization': 'Basic '+btoa('sysrock18:19027920')
-        },
-      })
-      .then(response => response.json())
-      .then(data => data.scoreboard.gameScore)
-      .catch(err => false);
+      const response = await fetch(`${baseUrl}/${date}/scoreboard.json`)
+        .then(response => response.json())
+        .then(data => data.games)
+        .catch(err => err);
       return response;
     }
   },
