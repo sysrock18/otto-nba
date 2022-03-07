@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Routes from './routes';
+import Header from './shared/header'
+import Home from './pages/home'
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Routes />
-        </BrowserRouter>
-    );
+  const [selectedTab, setSelectedTab] = useState(0)
+
+  return (
+    <>
+      <Header tab={selectedTab} setTab={tab => setSelectedTab(tab)} />
+      <Home tab={selectedTab} />
+    </>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

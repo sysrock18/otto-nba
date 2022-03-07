@@ -5,13 +5,25 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
-
-function Header() {
+function Header({ tab, setTab }) {
   const [open, setOpen] = useState(false);
 
   const handleToggle = () => {
     setOpen(!open);
+  }
+
+  const handleChange = (_e, newValue) => {
+    setTab(newValue);
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `full-width-tab-${index}`,
+      'aria-controls': `full-width-tabpanel-${index}`,
+    };
   }
 
   return (
@@ -32,6 +44,17 @@ function Header() {
             Otto NBA
           </Typography>
         </Toolbar>
+        <Tabs
+          value={tab}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="inherit"
+          variant="fullWidth"
+          aria-label="full width tabs"
+        >
+          <Tab label="Scoreboards" {...a11yProps(0)} />
+          <Tab label="Standings" {...a11yProps(1)} />
+        </Tabs>
       </AppBar>
       <Drawer open={open} onClose={handleToggle}>
         <div style={container}>
