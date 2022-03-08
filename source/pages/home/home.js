@@ -5,7 +5,7 @@ import api from '../../api';
 import Scoreboard from '../../components/Scoreboard/Scoreboard';
 import Teams from '../../components/Teams/teams';
 import TabPanel from '../../components/TabPanel/TabPanel';
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 const loaderStyle = {
   textAlign: 'center',
@@ -63,9 +63,12 @@ function Home({ tab }) {
 
     // if (currentSeason) {
     // const seasonName = currentSeason.slug
-    const gameScoresResp = await api.scoreboards.getList(yesterdayDate)
+    let yesterdayGameScores = await api.scoreboards.getList(yesterdayDate)
+    let todayGameScores = await api.scoreboards.getList()
     // const standingsResp = await api.conferenceStandings.getList(seasonName)
-    gameScores = gameScoresResp ?? []
+    yesterdayGameScores = yesterdayGameScores ?? []
+    todayGameScores = todayGameScores ?? []
+    gameScores = [...todayGameScores, ...yesterdayGameScores]
     // standings = standingsResp ? standingsResp : []
     // }
       
@@ -114,14 +117,14 @@ function Home({ tab }) {
   }
 
   return (
-    <>
+    <Container sx={{ mt: 12, px: 0 }}>
       <TabPanel value={tab} index={0}>
         {renderScores()}
       </TabPanel>
       <TabPanel value={tab} index={1}>
         {renderStandings()}
       </TabPanel>
-    </>
+    </Container>
   );
 }
 

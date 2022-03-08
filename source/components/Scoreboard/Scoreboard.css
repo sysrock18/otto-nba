@@ -5,31 +5,26 @@
 .cardContent {
   display: flex;
   justify-content: center;
+  padding-bottom: 16px;
 }
 
 .containerTeam {
-  text-align: center;
-  display: inline-block;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .containerResult {
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px;
-  width: 200px;
+  width: 170px;
+  text-align: center;
 }
 
-.awayScore {
-  font-size: 2.5em;
-  font-weight: bold;
-  float: left;
-}
-
-.homeScore {
-  font-size: 2.5em;
-  font-weight: bold;
-  float: right;
+.locationLabel {
+  font-weight: 600;
 }
 
 .containerScore {
@@ -42,13 +37,6 @@
 
 .city {
   font-size: 1.2em;
-}
-
-.teamNameContainer {
-  width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .teamName {

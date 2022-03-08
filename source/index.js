@@ -7,10 +7,10 @@ const App = () => {
   const [selectedTab, setSelectedTab] = useState(0)
 
   return (
-    <>
+    <div>
       <Header tab={selectedTab} setTab={tab => setSelectedTab(tab)} />
       <Home tab={selectedTab} />
-    </>
+    </div>
   );
 }
 

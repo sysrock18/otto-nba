@@ -1,9 +1,9 @@
-###[*Upgrade in progress*]
+###*Upgrade in progress*
 
 Otto NBA
 =========
 
-Web app developed with ReactJS that shows scoreboards of the NBA games of yesterday and the current conference standings of the league. I love coding and basketball.
+Web app built with ReactJS that shows current NBA scoreboards and current season conference standings of the league.
 
 ### Preview
 
@@ -13,14 +13,11 @@ Web app developed with ReactJS that shows scoreboards of the NBA games of yester
 
 ![Standings](screenshots/StandingsOttoNBA.png?raw=true "Standings")
 
-### Tools
+### Techs
 
  - [React](https://reactjs.org/)
-
  - [Webpack](https://webpack.js.org/)
-
  - [Babel](https://babeljs.io/)
-
  - [Material UI](https://mui.com/)
 
 #### Developer

@@ -1,0 +1,40 @@
+@keyframes fadeAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-o-keyframes fadeAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes fadeAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes fadeAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.dotLive {
+   -webkit-animation: fadeAnimation 1.5s infinite;
+   -moz-animation: fadeAnimation 1.5s infinite;
+   -o-animation: fadeAnimation 1.5s infinite;
+    animation: fadeAnimation 1.5s infinite;
+    border-radius: 100%;
+    background-color: red;
+    width: 8px;
+    height: 8px;
+}
+
+.liveIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.liveText {
+  color: red;
+}

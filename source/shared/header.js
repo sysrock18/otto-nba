@@ -28,7 +28,7 @@ function Header({ tab, setTab }) {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
