@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import api from '../api';
-import Scoreboard from '../components/scoreboard';
-import Teams from './teams';
-import TabPanel from '../components/TabPanel';
+import api from '../../api';
+import Scoreboard from '../../components/Scoreboard/Scoreboard';
+import Teams from '../../components/Teams/teams';
+import TabPanel from '../../components/TabPanel/TabPanel';
 import { Typography } from '@mui/material';
 
 const loaderStyle = {

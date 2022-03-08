@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import Standings from '../components/standings';
-import styles from './teams.css';
+import Standings from '../Standings/Standings';
+import styles from './Teams.css';
 
 class Teams extends Component {
   render() {
