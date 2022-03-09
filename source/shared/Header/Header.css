@@ -1,0 +1,18 @@
+
+.container {
+  padding: 15px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.myNetwork {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.network {
+  display: inline-block;
+  margin: 0px 4px;
+}
