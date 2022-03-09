@@ -1,44 +1,47 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import styles from './standings.css';
+import styles from './Standings.css';
+import Logo from '../Logo/Logo';
 
-class Standings extends Component {
-  render() {
-    return (
-      <div className={styles.conferenceStandings}>
-        <div className={styles.conferenceName}>
-          <img src={`https://otto-nba-sfs.now.sh/images/${this.props.conference['@name'].toLowerCase()}.png`} />
-          <span>{this.props.conference['@name']}</span>
-        </div>
-        <table className={styles.tableStandings}>
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>G</th>
-              <th>W</th>
-              <th>L</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.props.conference.teamentry.map((item) => { return (
-            <tr key={item.team.ID}>
-              <td><b>{item.rank}</b></td>
-              <td>
-                <Avatar src={`https://otto-nba-sfs.now.sh/images/${item.team.Abbreviation.toLowerCase()}.png`} />
-              </td>
-              <td>{`${item.team.City} ${item.team.Name}`}</td>
-              <td>{item.stats.GamesPlayed['#text']}</td>
-              <td>{item.stats.Wins['#text']}</td>
-              <td>{item.stats.Losses['#text']}</td>
-            </tr>
-          )})}
-          </tbody>
-        </table>
+function Standings({ name, conference }) {
+
+  const getGamesPlayed = (win, loss) => parseInt(win) + parseInt(loss)
+
+  return (
+    <div className={styles.conferenceStandings}>
+      <div className={styles.conferenceName}>
+        <Logo teamCode={name} />
+        <span>{name}</span>
       </div>
-    );
-  }
+      <table className={styles.tableStandings}>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>G</th>
+            <th>W</th>
+            <th>L</th>
+          </tr>
+        </thead>
+        <tbody>
+        {conference.map((item) => { return (
+          <tr key={item.teamSitesOnly.teamCode}>
+            <td><b>{item.confRank}</b></td>
+            <td>
+              <Avatar src={`/assets/${item.teamSitesOnly.teamTricode.toLowerCase()}.png`} />
+            </td>
+            <td>{`${item.teamSitesOnly.teamName} ${item.teamSitesOnly.teamNickname}`}</td>
+            <td>{getGamesPlayed(item.win, item.loss)}</td>
+            <td>{item.win}</td>
+            <td>{item.loss}</td>
+          </tr>
+        )})}
+        </tbody>
+      </table>
+    </div>
+  );
+
 }
 
 export default Standings;

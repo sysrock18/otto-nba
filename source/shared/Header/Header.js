@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import { common, orange } from '@mui/material/colors'
 import styles from './Header.css'
+import { Box } from '@mui/system'
 
 function Header({ tab, setTab }) {
   const [open, setOpen] = useState(false)
@@ -59,9 +60,11 @@ function Header({ tab, setTab }) {
       </AppBar>
       <Drawer open={open} onClose={handleToggle}>
         <div className={styles.container}>
-          <IconButton onClick={handleToggle}>
-            <CloseIcon />
-          </IconButton>
+          <Box sx={{ textAlign: 'right' }}>
+            <IconButton onClick={handleToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
           <Typography variant='h5' sx={{ mb: 5 }}>Information</Typography>
           <div className={styles.textCenter}>
             <SportsBasketballIcon sx={{ fontSize: 40, color: orange[500] }} />

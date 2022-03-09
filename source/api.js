@@ -17,7 +17,11 @@ const api = {
   },
   conferenceStandings: {
     async getList() {
-      
+      const response = await fetch(`${baseUrl}/current/standings_conference.json`)
+        .then(response => response.json())
+        .then(data => data.league.standard.conference)
+        .catch(err => err);
+      return response;
     }
   },
   teams: {

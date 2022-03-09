@@ -61,23 +61,20 @@ function Home({ tab }) {
   const getData = async () => {
     const todayDate = new Date()
     const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1))
-    // const currentSeason = await api.season.getCurrent(yesterdayDate)
     let gameScores = []
     let standings = []
 
-    // if (currentSeason) {
-    // const seasonName = currentSeason.slug
     let teams = await api.teams.getList()
     let teamsObj = {}
     teams.forEach(team => teamsObj[team.tricode.toLowerCase()] = team)
     let yesterdayGameScores = await api.scoreboards.getList(yesterdayDate)
     let todayGameScores = await api.scoreboards.getList()
-    // const standingsResp = await api.conferenceStandings.getList(seasonName)
+    const standingsResp = await api.conferenceStandings.getList()
+
     yesterdayGameScores = yesterdayGameScores ?? []
     todayGameScores = todayGameScores ?? []
     gameScores = [...todayGameScores, ...yesterdayGameScores]
-    // standings = standingsResp ? standingsResp : []
-    // }
+    standings = standingsResp ?? []
       
     return {
       gameScores,
@@ -111,9 +108,11 @@ function Home({ tab }) {
   const renderStandings = () => {
     const { loading, standings } = state
 
+    console.log({ standings })
+
     if (loading) {
       return renderLoader()
-    } else if (standings.length > 0) {
+    } else if (Object.keys(standings).length > 0) {
       return (
         <Teams standings={standings} />
       )

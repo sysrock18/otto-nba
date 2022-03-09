@@ -1,25 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Standings from '../Standings/Standings';
 import styles from './Teams.css';
 
-class Teams extends Component {
-  render() {
-    return (
-      <section name="Teams">
-        {this.props.standings[0] && this.props.standings[1] ?
-          (<div style={container}>
-            <Standings conference={this.props.standings[0]} />
+function Teams({ standings }) {
 
-            <Standings conference={this.props.standings[1]} />
-          </div>)
-          : null}
-      </section>
-    );
-  }
-}
+  return (
+    <section name="Teams">
+      <div className={styles.container}>
+        <Standings name="east" conference={standings.east} />
+        <Standings name="west" conference={standings.west} />
+      </div>
+    </section>
+  );
 
-const container = {
-  textAlign: 'center'
 }
 
 export default Teams;
