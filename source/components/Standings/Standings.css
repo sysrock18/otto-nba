@@ -1,11 +1,12 @@
 .conferenceStandings {
   display: inline-block;
-  width: 340px;
   margin: 10px 15px;
 }
 
 .conferenceName {
-  height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .conferenceName span {
@@ -25,4 +26,10 @@
 .tableStandings tr th, .tableStandings tr td {
   padding: 7px;
   border-bottom: 1px solid rgb(173, 168, 168);
+}
+
+@media screen and (max-width: 540px) {
+  .tableStandings {
+    width: 300px;
+  }
 }

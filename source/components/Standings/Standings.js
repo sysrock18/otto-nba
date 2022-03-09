@@ -2,6 +2,8 @@ import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import styles from './Standings.css';
 import Logo from '../Logo/Logo';
+import _ from 'lodash'
+import { Typography } from '@mui/material';
 
 function Standings({ name, conference }) {
 
@@ -10,8 +12,8 @@ function Standings({ name, conference }) {
   return (
     <div className={styles.conferenceStandings}>
       <div className={styles.conferenceName}>
+        <Typography variant="h5">{_.capitalize(name)}</Typography>
         <Logo teamCode={name} />
-        <span>{name}</span>
       </div>
       <table className={styles.tableStandings}>
         <thead>
@@ -19,24 +21,28 @@ function Standings({ name, conference }) {
             <th></th>
             <th></th>
             <th></th>
-            <th>G</th>
-            <th>W</th>
-            <th>L</th>
+            <th><Typography sx={{ fontWeight: 600 }}>G</Typography></th>
+            <th><Typography sx={{ fontWeight: 600 }}>W</Typography></th>
+            <th><Typography sx={{ fontWeight: 600 }}>L</Typography></th>
           </tr>
         </thead>
         <tbody>
-        {conference.map((item) => { return (
+        {conference.map((item) => (
           <tr key={item.teamSitesOnly.teamCode}>
-            <td><b>{item.confRank}</b></td>
+            <td><Typography sx={{ fontWeight: 600 }}>{item.confRank}</Typography></td>
             <td>
               <Avatar src={`/assets/${item.teamSitesOnly.teamTricode.toLowerCase()}.png`} />
             </td>
-            <td>{`${item.teamSitesOnly.teamName} ${item.teamSitesOnly.teamNickname}`}</td>
-            <td>{getGamesPlayed(item.win, item.loss)}</td>
-            <td>{item.win}</td>
-            <td>{item.loss}</td>
+            <td>
+              <Typography sx={{ fontSize: 14 }}>
+                {`${item.teamSitesOnly.teamName} ${item.teamSitesOnly.teamNickname}`}
+              </Typography>
+            </td>
+            <td><Typography>{getGamesPlayed(item.win, item.loss)}</Typography></td>
+            <td><Typography>{item.win}</Typography></td>
+            <td><Typography>{item.loss}</Typography></td>
           </tr>
-        )})}
+        ))}
         </tbody>
       </table>
     </div>
