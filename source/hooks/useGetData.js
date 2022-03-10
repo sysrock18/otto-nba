@@ -9,9 +9,8 @@ function reducer(state, action) {
       return {...state, gameScores: action.payload}
     case "SET_TEAMS":
       return {...state, teams: action.payload}
-    case "TOGGLE_LOADER":
-      return {...state, loading: !state.loading}
-  
+    case "SET_LOADER":
+      return {...state, loading: action.payload}
     default:
       return state
   }
@@ -36,7 +35,7 @@ function useGetData() {
   }, []);
 
   const getData = () => {
-    dispatch({ type: 'TOGGLE_LOADER' })
+    dispatch({ type: 'SET_LOADER', payload: true })
     fetchData().then(data => dispatchResults(data, false))
   }
 
@@ -70,7 +69,7 @@ function useGetData() {
       dispatch({ type: 'SET_GAMESCORES', payload: gameScores })
       dispatch({ type: 'SET_STANDINGS', payload: standings })
       dispatch({ type: 'SET_TEAMS', payload: teams })
-      dispatch({ type: 'TOGGLE_LOADER' })
+      dispatch({ type: 'SET_LOADER', payload: false })
     }
   }
 

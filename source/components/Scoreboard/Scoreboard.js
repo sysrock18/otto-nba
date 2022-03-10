@@ -30,8 +30,8 @@ function Scoreboard({ gameScore, teams }) {
           <div className={styles.containerTeam}>
             <Typography variant='h4'>{gameScore.vTeam.score}</Typography>
             <Logo teamCode={vTeamCode} />
-            <Typography sx={{ fontSize: 12 }}>{teams[vTeamCode].city}</Typography>
-            <Typography sx={{ fontSize: teamNameSize, fontWeight: 600 }}>{teams[vTeamCode].nickname}</Typography>
+            <Typography sx={{ fontSize: 12 }}>{teams[vTeamCode]?.city}</Typography>
+            <Typography sx={{ fontSize: teamNameSize, fontWeight: 600 }}>{teams[vTeamCode]?.nickname}</Typography>
           </div>
           <div className={styles.containerResult}>
             <Typography sx={{ fontWeight: 600 }}>Location</Typography>
@@ -43,8 +43,8 @@ function Scoreboard({ gameScore, teams }) {
           <div className={styles.containerTeam}>
             <Typography variant='h4'>{gameScore.hTeam.score}</Typography>
             <Logo teamCode={hTeamCode} />
-            <Typography sx={{ fontSize: 12 }}>{teams[hTeamCode].city}</Typography>
-            <Typography sx={{ fontSize: teamNameSize, fontWeight: 600 }}>{teams[hTeamCode].nickname}</Typography>
+            <Typography sx={{ fontSize: 12 }}>{teams[hTeamCode]?.city}</Typography>
+            <Typography sx={{ fontSize: teamNameSize, fontWeight: 600 }}>{teams[hTeamCode]?.nickname}</Typography>
           </div>
         </CardContent>
       </Card>

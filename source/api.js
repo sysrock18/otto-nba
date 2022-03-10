@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch';
 import utils from './utils';
 import _ from 'lodash'
 
