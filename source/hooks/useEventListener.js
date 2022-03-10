@@ -5,11 +5,13 @@ const useEventListener = (target, type, listener, ...options) => {
     () => {
       const targetIsRef = target.hasOwnProperty("current")
       const currentTarget = targetIsRef ? target.current : target
-      if (currentTarget)
+      if (currentTarget) {
         currentTarget.addEventListener(type, listener, ...options)
+      }
       return () => {
-        if (currentTarget)
+        if (currentTarget) {
           currentTarget.removeEventListener(type, listener, ...options)
+        }
       }
     },
     [target, type, listener, options]

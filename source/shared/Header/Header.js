@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Drawer from '@mui/material/Drawer'
 import Toolbar from '@mui/material/Toolbar'
@@ -13,13 +13,21 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import { common, orange } from '@mui/material/colors'
 import styles from './Header.css'
 import { Box } from '@mui/system'
+import useEventListener from '../../hooks/useEventListener'
 
 function Header({ tab, setTab }) {
   const [open, setOpen] = useState(false)
+  const menuButtonRef = useRef(null)
+  const tabsRef = useRef(null)
+  const closeButtonMenuRef = useRef(null)
+
+  useEventListener(menuButtonRef, 'click', () => handleToggle())
+  useEventListener(tabsRef, 'click', e => handleChange(e.target.dataset.value))
+  useEventListener(closeButtonMenuRef, 'click', () => handleToggle())
 
   const handleToggle = () => setOpen(!open)
-
-  const handleChange = (_e, newValue) => setTab(newValue)
+  
+  const handleChange = value => setTab(parseInt(value))
 
   function a11yProps(index) {
     return {
@@ -33,12 +41,12 @@ function Header({ tab, setTab }) {
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
+            ref={menuButtonRef}
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={handleToggle}
           >
             <MenuIcon />
           </IconButton>
@@ -48,20 +56,20 @@ function Header({ tab, setTab }) {
         </Toolbar>
         <Tabs
           value={tab}
-          onChange={handleChange}
+          ref={tabsRef}
           indicatorColor="secondary"
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs"
         >
-          <Tab label="Scoreboards" {...a11yProps(0)} />
-          <Tab label="Standings" {...a11yProps(1)} />
+          <Tab label="Scoreboards" data-value="0" {...a11yProps(0)} />
+          <Tab label="Standings" data-value="1" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <Drawer open={open} onClose={handleToggle}>
         <div className={styles.container}>
           <Box sx={{ textAlign: 'right' }}>
-            <IconButton onClick={handleToggle}>
+            <IconButton onClick={handleToggle} ref={closeButtonMenuRef}>
               <CloseIcon />
             </IconButton>
           </Box>

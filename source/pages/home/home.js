@@ -13,7 +13,7 @@ import useEventListener from '../../hooks/useEventListener';
 function Home({ tab }) {
   const { data, getData } = useGetData()
   const refreshButtonRef = useRef(null)
-  useEventListener(refreshButtonRef, 'mousedown', () => {
+  useEventListener(refreshButtonRef, 'click', () => {
     if (!data.loading) {
       getData()
     }
@@ -67,7 +67,6 @@ function Home({ tab }) {
       </TabPanel>
       <Fab
         ref={refreshButtonRef}
-        disabled={data.loading}
         aria-label="refresh"
         color="secondary"
         sx={{ bottom: 24, right: 24, position: 'fixed' }}
