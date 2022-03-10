@@ -1,25 +1,31 @@
-###*Upgrade in progress*
-
 Otto NBA
 =========
 
-Web app built with ReactJS that shows current NBA scoreboards and current season conference standings of the league.
+Web app built with ReactJS that shows current NBA scoreboards and conference standings of the current season.
 
-### Preview
+## Preview
 
 [*Not available for now*]
 
-![Main](screenshots/MainOttoNBA.png?raw=true "Main")
+### Scoreboards
+**Mobile**
+![Mobile](screenshots/otto_nba_sc_1.png?raw=true "Mobile")
+**Desktop**
+![Desktop](screenshots/otto_nba_sc_3.png?raw=true "Desktop")
 
-![Standings](screenshots/StandingsOttoNBA.png?raw=true "Standings")
+### Standings
+**Mobile**
+![Mobile](screenshots/otto_nba_sc_2.png?raw=true "Mobile")
+**Desktop**
+![Desktop](screenshots/otto_nba_sc_4.png?raw=true "Desktop")
 
-### Techs
+## Techs
 
  - [React](https://reactjs.org/)
  - [Webpack](https://webpack.js.org/)
  - [Babel](https://babeljs.io/)
  - [Material UI](https://mui.com/)
 
-#### Developer
+## Developer
 Simon González
-e-mail: gonzalezsimon18@gmail.com
+email: gonzalezsimon18@gmail.com
