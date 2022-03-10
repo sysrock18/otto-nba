@@ -18,7 +18,7 @@ function reducer(state, action) {
 }
 
 function useGetData() {
-  const [state, dispatch] = useReducer(reducer, {
+  const [data, dispatch] = useReducer(reducer, {
     gameScores: [],
     standings: [],
     teams: {},
@@ -28,21 +28,19 @@ function useGetData() {
   useEffect(() => {
     let isCancelled = false;
 
-    getData().then(({ gameScores, standings, teams }) => {
-      if (!isCancelled) {
-        dispatch({ type: 'SET_GAMESCORES', payload: gameScores })
-        dispatch({ type: 'SET_STANDINGS', payload: standings })
-        dispatch({ type: 'SET_TEAMS', payload: teams })
-        dispatch({ type: 'TOGGLE_LOADER' })
-      }
-    })
+    fetchData().then(data => dispatchResults(data, isCancelled))
 
     return () => {
       isCancelled = true;
     };
   }, []);
 
-  const getData = async () => {
+  const getData = () => {
+    dispatch({ type: 'TOGGLE_LOADER' })
+    fetchData().then(data => dispatchResults(data, false))
+  }
+
+  const fetchData = async () => {
     const todayDate = new Date()
     const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1))
     let gameScores = []
@@ -67,7 +65,16 @@ function useGetData() {
     }
   }
 
-  return state
+  const dispatchResults = ({ gameScores, standings, teams }, isCancelled) => {
+    if (!isCancelled) {
+      dispatch({ type: 'SET_GAMESCORES', payload: gameScores })
+      dispatch({ type: 'SET_STANDINGS', payload: standings })
+      dispatch({ type: 'SET_TEAMS', payload: teams })
+      dispatch({ type: 'TOGGLE_LOADER' })
+    }
+  }
+
+  return { data, getData }
 }
 
 export default useGetData

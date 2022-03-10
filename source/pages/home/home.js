@@ -4,12 +4,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Scoreboard from '../../components/Scoreboard/Scoreboard';
 import Teams from '../../components/Teams/teams';
 import TabPanel from '../../components/TabPanel/TabPanel';
-import { Container, Typography } from '@mui/material';
+import { Container, Fab, Typography } from '@mui/material';
 import styles from './Home.css'
 import useGetData from '../../hooks/useGetData';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 function Home({ tab }) {
-  const data = useGetData()
+  const { data, getData } = useGetData()
 
   const renderLoader = () => (
     <div className={styles.loader}>
@@ -44,7 +45,7 @@ function Home({ tab }) {
       )
     } else {
       return (
-        <Typography variant="h5" style={errorStyle}>We can't load the standings</Typography>
+        <Typography variant="h5" style={styles.error}>We can't load the standings</Typography>
       )
     }
   }
@@ -57,6 +58,14 @@ function Home({ tab }) {
       <TabPanel value={tab} index={1}>
         {renderStandings()}
       </TabPanel>
+      <Fab
+        aria-label="refresh"
+        color="secondary"
+        sx={{ bottom: 24, right: 24, position: 'fixed' }}
+        onClick={() => getData()}
+      >
+        <RefreshIcon />
+      </Fab>
     </Container>
   );
 }
