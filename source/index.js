@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 import Header from './shared/Header/Header'
-import Home from './pages/home/home'
+import Home from './pages/Home/Home'
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState(0)

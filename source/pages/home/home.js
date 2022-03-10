@@ -1,96 +1,24 @@
-import React, { useEffect, useReducer } from 'react';
+import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import api from '../../api';
 import Scoreboard from '../../components/Scoreboard/Scoreboard';
 import Teams from '../../components/Teams/teams';
 import TabPanel from '../../components/TabPanel/TabPanel';
 import { Container, Typography } from '@mui/material';
-
-const loaderStyle = {
-  textAlign: 'center',
-  padding: '10px'
-}
-  
-const errorStyle =  {
-  marginTop: '40px',
-  textAlign: 'center'
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "SET_STANDINGS":
-      return {...state, standings: action.payload}
-    case "SET_GAMESCORES":
-      return {...state, gameScores: action.payload}
-    case "SET_TEAMS":
-      return {...state, teams: action.payload}
-    case "TOGGLE_LOADER":
-      return {...state, loading: !state.loading}
-  
-    default:
-      return state
-  }
-}
+import styles from './Home.css'
+import useGetData from '../../hooks/useGetData';
 
 function Home({ tab }) {
-  const [state, dispatch] = useReducer(reducer, {
-    gameScores: [],
-    standings: [],
-    teams: {},
-    loading: true
-  })
-
-  useEffect(() => {
-    let isCancelled = false;
-
-    getData().then(({ gameScores, standings, teams }) => {
-      if (!isCancelled) {
-        dispatch({ type: 'SET_GAMESCORES', payload: gameScores })
-        dispatch({ type: 'SET_STANDINGS', payload: standings })
-        dispatch({ type: 'SET_TEAMS', payload: teams })
-        dispatch({ type: 'TOGGLE_LOADER' })
-      }
-    })
-
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
-
-  const getData = async () => {
-    const todayDate = new Date()
-    const yesterdayDate = new Date(todayDate.setDate(todayDate.getDate() - 1))
-    let gameScores = []
-    let standings = []
-
-    let teams = await api.teams.getList()
-    let teamsObj = {}
-    teams.forEach(team => teamsObj[team.tricode.toLowerCase()] = team)
-    let yesterdayGameScores = await api.scoreboards.getList(yesterdayDate)
-    let todayGameScores = await api.scoreboards.getList()
-    const standingsResp = await api.conferenceStandings.getList()
-
-    yesterdayGameScores = yesterdayGameScores ?? []
-    todayGameScores = todayGameScores ?? []
-    gameScores = [...todayGameScores, ...yesterdayGameScores]
-    standings = standingsResp ?? []
-      
-    return {
-      gameScores,
-      standings,
-      teams: teamsObj
-    }
-  }
+  const data = useGetData()
 
   const renderLoader = () => (
-    <div style={loaderStyle}>
+    <div className={styles.loader}>
       <CircularProgress />
     </div>
   )
 
   const renderScores = () => {
-    const { loading, gameScores, teams } = state
+    const { loading, gameScores, teams } = data
 
     if (loading) {
       return renderLoader()
@@ -100,15 +28,13 @@ function Home({ tab }) {
       )
     } else {
       return (
-        <Typography variant="h5" style={errorStyle}>We can't load the scores</Typography>
+        <Typography variant="h5" className={styles.error}>We can't load the scores</Typography>
       )
     }
   }
 
   const renderStandings = () => {
-    const { loading, standings } = state
-
-    console.log({ standings })
+    const { loading, standings } = data
 
     if (loading) {
       return renderLoader()
