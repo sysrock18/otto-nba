@@ -10,8 +10,8 @@ function Logo({ teamCode }) {
   }, [])
   
   const setLogo = () => {
-    let logoUrl = `/assets/${teamCode}.png`
-    const fallbackLogoUrl = '/assets/basketball-logo.png'
+    let logoUrl = `assets/${teamCode}.png`
+    const fallbackLogoUrl = 'assets/basketball-logo.png'
     logoUrl = utils.imageExists(logoUrl) ? logoUrl : fallbackLogoUrl
 
     logoRef.current.style.backgroundImage = `url(${logoUrl})`

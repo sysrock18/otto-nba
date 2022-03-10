@@ -31,7 +31,7 @@ function Standings({ name, conference }) {
           <tr key={item.teamSitesOnly.teamCode}>
             <td><Typography sx={{ fontWeight: 600 }}>{item.confRank}</Typography></td>
             <td>
-              <Avatar src={`/assets/${item.teamSitesOnly.teamTricode.toLowerCase()}.png`} />
+              <Avatar src={`assets/${item.teamSitesOnly.teamTricode.toLowerCase()}.png`} />
             </td>
             <td>
               <Typography sx={{ fontSize: 14 }}>

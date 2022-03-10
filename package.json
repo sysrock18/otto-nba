@@ -1,12 +1,15 @@
 {
   "name": "otto-nba",
+  "homepage": "http://sysrock18.github.io/otto-nba",
   "version": "0.0.1",
   "description": "Show NBA teams conference standings and scoreboards of the current season!",
   "main": "./dist/index.bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack.config.js --mode development",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b master"
   },
   "author": "Simon Gonzalez",
   "license": "ISC",
@@ -41,6 +44,7 @@
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.49.8",
     "sass-loader": "^12.6.0",
